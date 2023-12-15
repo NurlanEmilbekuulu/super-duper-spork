@@ -37,6 +37,7 @@ jobs:
     - name: Merge to Master
       run: |
         git fetch --all
+        cat .github/workflows/main.yml
         DEFAULT_BRANCH=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
         git checkout -B $DEFAULT_BRANCH origin/$DEFAULT_BRANCH
         cat .github/workflows/main.yml
