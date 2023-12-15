@@ -39,6 +39,7 @@ jobs:
         git fetch --all
         DEFAULT_BRANCH=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
         git checkout -B $DEFAULT_BRANCH origin/$DEFAULT_BRANCH
+        cat .github/workflows/main.yml
         git merge $GITHUB_SHA --allow-unrelated-histories
         git push origin $DEFAULT_BRANCH
         
