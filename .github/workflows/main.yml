@@ -32,7 +32,8 @@ jobs:
     - name: Merge to Master
       run: |
         # git checkout main
-        git branch -a
+        git fetch -a
+        git checkout 'origin/main'
 
     # - name: Merge to Master
     #   run: |
