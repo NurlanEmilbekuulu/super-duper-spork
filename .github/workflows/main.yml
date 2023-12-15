@@ -37,6 +37,7 @@ jobs:
     - name: Merge to Master
       run: |
         ls -a
+        DEFAULT_BRANCH=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
         git checkout -B $DEFAULT_BRANCH origin/$DEFAULT_BRANCH
         git merge $GITHUB_SHA
         git push origin $DEFAULT_BRANCH
