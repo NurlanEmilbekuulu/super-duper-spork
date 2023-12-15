@@ -69,5 +69,4 @@ jobs:
 
     - name: Deploy to staging
       run: |
-        # Add your deployment script or commands here
         echo "Deploying to staging environment..."
