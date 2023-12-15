@@ -37,7 +37,8 @@ jobs:
     - name: Git clone
       run: |
         git clone git@github.com:NurlanEmilbekuulu/super-duper-spork.git
-        ls
+        cd super-duper-spork
+        git branch -a
 
     - name: Merge to Master
       run: |
