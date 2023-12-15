@@ -41,13 +41,6 @@ jobs:
         git checkout -B $DEFAULT_BRANCH origin/$DEFAULT_BRANCH
         git merge $GITHUB_SHA --allow-unrelated-histories
         git push origin $DEFAULT_BRANCH
-
-    # - name: Merge to Master
-    #   run: |
-    #     git checkout master
-    #     git reset --hard origin/master
-    #     git merge $GITHUB_SHA
-    #     git push origin master
         
   build-and-test:
     runs-on: ubuntu-latest
