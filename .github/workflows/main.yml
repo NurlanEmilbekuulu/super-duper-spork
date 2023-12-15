@@ -36,12 +36,10 @@ jobs:
 
     - name: Merge to Master
       run: |
-        ls -a
         git fetch --all
         DEFAULT_BRANCH=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
         git checkout -B $DEFAULT_BRANCH origin/$DEFAULT_BRANCH
-        git pull origin $DEFAULT_BRANCH --allow-unrelated-histories
-        git merge $GITHUB_SHA
+        git merge $GITHUB_SHA --allow-unrelated-histories
         git push origin $DEFAULT_BRANCH
 
     # - name: Merge to Master
