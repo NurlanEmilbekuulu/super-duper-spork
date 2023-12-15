@@ -34,7 +34,7 @@ jobs:
         git fetch -a
         git checkout 'origin/main'
         git merge $GITHUB_SHA
-        git push origin master
+        git push origin main
 
     # - name: Merge to Master
     #   run: |
