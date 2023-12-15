@@ -28,10 +28,13 @@ jobs:
     - name: Git branch
       run: git branch -a
 
-    - name: Git switch to main
-      run: |
-        git checkout main
-        git reset --hard origin/main
+    - name: Print environment variables
+      run: env
+
+    # - name: Git switch to main
+    #   run: |
+    #     git checkout main
+    #     git reset --hard origin/main
 
   deploy-to-staging:
     runs-on: ubuntu-latest
