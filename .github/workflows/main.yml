@@ -40,7 +40,9 @@ jobs:
         cd super-duper-spork
         git merge origin/develop
         git push origin main
-
+      
+    - name: Dummy command
+      run: echo "Hello, world!"
         
   build-and-test:
     runs-on: ubuntu-latest
