@@ -28,6 +28,9 @@ jobs:
     - name: Git branch
       run: git branch -a
 
+    - name: Git switch to main
+      run: git switch main
+
   deploy-to-staging:
     runs-on: ubuntu-latest
     needs: build-and-test
