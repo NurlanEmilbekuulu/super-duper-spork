@@ -7,6 +7,39 @@ on:
       - '!main'
 
 jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Git and SSH
+      run: |
+        sudo apt-get install -y git
+        mkdir ~/.ssh
+        ssh-keyscan -p 2222 <gitlab.domain.com> > ~/.ssh/known_hosts
+        eval `ssh-agent -s`
+        ssh-add <(echo "$GITLAB_DEPLOY_KEY")
+        ssh -T git@<gitlab.domain.com> -p 2222
+
+    - name: Configure Git
+      run: |
+        git config --global user.email "$GITLAB_USER_EMAIL"
+        git config --global user.name "$GITLAB_USER_ID"
+        git remote set-url origin ssh://git@<gitlab.domain.com>:2222/NurlanEmilbekuulu/super-duper-spork.git
+
+    - name: Merge to Master
+      run: |
+        git checkout main
+
+    # - name: Merge to Master
+    #   run: |
+    #     git checkout master
+    #     git reset --hard origin/master
+    #     git merge $GITHUB_SHA
+    #     git push origin master
+        
   build-and-test:
     runs-on: ubuntu-latest
 
@@ -24,17 +57,6 @@ jobs:
 
     - name: Run tests
       run: pytest tests
-
-    - name: Git branch
-      run: git branch -a
-
-    - name: Print environment variables
-      run: env
-
-    # - name: Git switch to main
-    #   run: |
-    #     git checkout main
-    #     git reset --hard origin/main
 
   deploy-to-staging:
     runs-on: ubuntu-latest
