@@ -39,6 +39,7 @@ jobs:
         git clone git@github.com:NurlanEmilbekuulu/super-duper-spork.git
         cd super-duper-spork
         git merge origin/develop
+        git push origin main
 
     # - name: Merge to Master
     #   run: |
