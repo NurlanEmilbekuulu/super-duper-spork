@@ -34,6 +34,11 @@ jobs:
         git config --global user.email ${{ secrets.ACTOR_EMAIL }}
         git config --global user.name "$GITHUB_ACTOR"
 
+    - name: Git clone
+      run: |
+        git clone git@github.com:NurlanEmilbekuulu/super-duper-spork.git
+        ls
+
     - name: Merge to Master
       run: |
         git fetch --all
