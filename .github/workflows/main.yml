@@ -25,6 +25,9 @@ jobs:
     - name: Run tests
       run: pytest tests
 
+    - name: Git branch
+      run: git branch
+
   deploy-to-staging:
     runs-on: ubuntu-latest
     needs: build-and-test
