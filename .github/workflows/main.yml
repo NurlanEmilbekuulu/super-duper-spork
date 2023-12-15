@@ -17,17 +17,17 @@ jobs:
     - name: Set up Git and SSH
       run: |
         sudo apt-get install -y git
-        mkdir ~/.ssh
-        ssh-keyscan -p 2222 <gitlab.domain.com> > ~/.ssh/known_hosts
-        eval `ssh-agent -s`
-        ssh-add <(echo "$GITLAB_DEPLOY_KEY")
-        ssh -T git@<gitlab.domain.com> -p 2222
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        eval "$(ssh-agent -s)"
+        ssh-add ~/.ssh/id_rsa
 
     - name: Configure Git
       run: |
-        git config --global user.email "$GITLAB_USER_EMAIL"
-        git config --global user.name "$GITLAB_USER_ID"
-        git remote set-url origin ssh://git@<gitlab.domain.com>:2222/NurlanEmilbekuulu/super-duper-spork.git
+        git config --global user.email ${{ secrets.ACTOR_EMAIL }}
+        git config --global user.name "$GITHUB_ACTOR"
 
     - name: Merge to Master
       run: |
