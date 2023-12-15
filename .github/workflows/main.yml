@@ -41,15 +41,6 @@ jobs:
         git merge origin/develop
         git push origin main
 
-    # - name: Merge to Master
-    #   run: |
-    #     git fetch --all
-    #     cat .github/workflows/main.yml
-    #     DEFAULT_BRANCH=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
-    #     git checkout -B $DEFAULT_BRANCH origin/$DEFAULT_BRANCH
-    #     cat .github/workflows/main.yml
-    #     git merge $GITHUB_SHA --allow-unrelated-histories --force
-    #     git push origin $DEFAULT_BRANCH
         
   build-and-test:
     runs-on: ubuntu-latest
