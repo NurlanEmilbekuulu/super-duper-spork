@@ -29,7 +29,9 @@ jobs:
       run: git branch -a
 
     - name: Git switch to main
-      run: git switch main
+      run: |
+        git checkout main
+        git reset --hard origin/main
 
   deploy-to-staging:
     runs-on: ubuntu-latest
